@@ -71,7 +71,6 @@ export default function Memory({ x, y, color, paused }: MemoryProps) {
     const { v: vz_, p: pz_, et: etz } = pController(vz, tgpz, pz, dt, 0.003);
     pz = pz_;
     vz = vz_;
-      console.log(tgpz, meshRef.current.position.z);
 
     // console.log(tgpz, pz);
 
@@ -80,8 +79,6 @@ export default function Memory({ x, y, color, paused }: MemoryProps) {
       do {
         n_tgpz = Math.random() * 2 * MAX_TGPZ - MAX_TGPZ;
       } while (Math.abs(n_tgpz - tgpz) < MIN_TGPZ_CHANGE);
-
-      console.log(tgpz);
 
       tgpz = n_tgpz;
     }
