@@ -1,6 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { ComponentProps, useEffect, useRef, useState } from "react";
 import { Color, Mesh, Object3D } from "three";
+import { MemoryData } from "./MemoryField";
 
 // will be further modified by dt
 const MAX_ACCEL = 0.01;
@@ -13,8 +14,9 @@ const MIN_TGPZ_CHANGE = 2;
 type MemoryProps = {
   x: number;
   y: number;
-  color: string | Color;
+  color: [number, number, number];
   paused: boolean;
+  highlighted: MemoryData;
 };
 
 // HAVE MEMORIES THAT CAN BE INTERACTED WITH, GLOW
@@ -35,7 +37,7 @@ const pController = (v: number, tgp: number, p: number, dt: number, Kp: number) 
   return { p: p_, v: v_, et };
 };
 
-export default function Memory({ x, y, color, paused }: MemoryProps) {
+export default function Memory({ x, y, color, paused, highlighted }: MemoryProps) {
   const meshRef = useRef<Mesh>(null);
 
   const [active, setActive] = useState(false);
@@ -87,7 +89,9 @@ export default function Memory({ x, y, color, paused }: MemoryProps) {
   return (<>
     <mesh ref={meshRef} onClick={() => setActive(!active)}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={color} /> 
+      <meshStandardMaterial color={
+        color.map(item => item * (highlighted ? 10 : 1)) as [number, number, number]
+      } /> 
     </mesh>
   </>);
 }

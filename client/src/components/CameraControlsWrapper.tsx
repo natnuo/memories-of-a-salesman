@@ -3,9 +3,9 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Euler, Vector3 } from "three";
 
-export default function CameraControlsWrapper(
-  props: CameraControlsProps & { onLeftDrag?: () => void, onRightDrag?: () => void, onZoom?: () => void }
-) {
+type CameraControlsWrapperProps = CameraControlsProps & { onLeftDrag?: () => void, onRightDrag?: () => void, onZoom?: () => void };
+
+export default function CameraControlsWrapper(props: CameraControlsWrapperProps) {
   const cameraControls = useRef<CameraControls>(null);
 
   let

@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { memo, ReactNode, useEffect, useRef, useState } from "react";
 import CameraControlsWrapper from "./CameraControlsWrapper";
 import MemoryField from "./MemoryField";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 const MemoryFieldMemo = memo(MemoryField);
 
@@ -31,6 +32,8 @@ const App = () => {
   };
 
   const [tutorialPage, setTutorialPage] = useState(0);
+
+  const [cntHighlighted, setCntHighlighted] = useState(0);
 
   useEffect(() => {
     switch (tutorialPage) {
@@ -118,6 +121,7 @@ const App = () => {
         );
         break;
       case 5:
+        setCntHighlighted(1);
         setOverlay(
           <>
             <span>
@@ -143,6 +147,11 @@ const App = () => {
       `} style={{ transitionDuration: OVERLAY_TRANSITION_MS / 2 + "ms" }} ref={overlayRef}>
         {dispOverlay}
       </div>
+
+      {/* BLOOM */}
+      <EffectComposer>
+        <Bloom mipmapBlur luminanceThreshold={1} />
+      </EffectComposer>
 
       {/* CANVAS */}
       <Canvas flat className={`${styles["w-full"]} ${styles["h-full"]} ${styles["bg-black"]}`}>
@@ -175,7 +184,7 @@ const App = () => {
 
         {/* MESHES */}
         {/* memoryfield */}
-        <MemoryFieldMemo paused={paused}></MemoryFieldMemo>
+        <MemoryFieldMemo paused={paused} highlights={cntHighlighted}></MemoryFieldMemo>
       </Canvas>
     </div>
   );
