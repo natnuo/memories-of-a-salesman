@@ -1,12 +1,10 @@
 import styles from "../css/index.module.css";
-import { Canvas, useFrame } from '@react-three/fiber'
-import Memory from "./Grave";
-import { ReactNode, useEffect, useRef, useState } from "react";
-import { CameraControls } from "@react-three/drei";
-import { Euler, Vector3 } from "three";
+import { Canvas, useFrame } from '@react-three/fiber';
+import { memo, ReactNode, useEffect, useRef, useState } from "react";
 import CameraControlsWrapper from "./CameraControlsWrapper";
+import MemoryField from "./MemoryField";
 
-const RED = "#B31942", BLUE = "#0A3161", WHITE = "#FFFFFF";
+const MemoryFieldMemo = memo(MemoryField);
 
 const OVERLAY_TRANSITION_MS = 2000;
 const CONTINUE_PULSE_TIME = "4s";
@@ -98,10 +96,32 @@ const App = () => {
         setOverlay(
           <>
             <span>
-              Let's finish controls. Try zooming out by{" "}
-              <span className={`${styles["text-red-400"]}`}>moving two fingers apart</span>{" "}
+              Let's continue with controls. Try zooming by{" "}
+              <span className={`${styles["text-red-400"]}`}>moving two fingers together/apart</span>{" "}
               or{" "}
               <span className={`${styles["text-blue-400"]}`}>scrolling mouse wheel</span>.
+            </span>
+          </>
+        );
+        break;
+      case 4:
+        setOverlay(
+          <>
+            <span>
+              Great. To finish controls, drag while pressing{" "}
+              <span className={`${styles["text-red-400"]}`}>bottom right trackpad</span>{" "}
+              or{" "}
+              <span className={`${styles["text-blue-400"]}`}>right mouse button</span>{" "}
+              to pan.
+            </span>
+          </>
+        );
+        break;
+      case 5:
+        setOverlay(
+          <>
+            <span>
+              OK. One memory is now highlighted. Try clicking it.
             </span>
           </>
         );
@@ -128,9 +148,15 @@ const App = () => {
       <Canvas flat className={`${styles["w-full"]} ${styles["h-full"]} ${styles["bg-black"]}`}>
         {/* CAMERA */}
         <CameraControlsWrapper
-          onChange={() => {
-            setPaused(false);
+          onChange={() => setPaused(false) }
+          onLeftDrag={() => {
             if (tutorialPage === 1) setTutorialPage(2);
+          }}
+          onRightDrag={() => {
+            if (tutorialPage === 4) setTutorialPage(5);
+          }}
+          onZoom={() => {
+            if (tutorialPage === 3) setTutorialPage(4);
           }}
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 1.6}
@@ -148,96 +174,8 @@ const App = () => {
         />
 
         {/* MESHES */}
-        {/* cemetery */}
-        <group position={[ 0, 0, -10 ]}>
-          <Memory x={-5} y={3} color={BLUE} paused={paused}></Memory>
-          <Memory x={-5} y={2} color={BLUE} paused={paused}></Memory>
-          <Memory x={-5} y={1} color={BLUE} paused={paused}></Memory>
-          <Memory x={-5} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={-5} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={-5} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-5} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={-4} y={3} color={BLUE} paused={paused}></Memory>
-          <Memory x={-4} y={2} color={BLUE} paused={paused}></Memory>
-          <Memory x={-4} y={1} color={BLUE} paused={paused}></Memory>
-          <Memory x={-4} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={-4} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={-4} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-4} y={-3} color={RED} paused={paused}></Memory>
-
-          <Memory x={-3} y={3} color={BLUE} paused={paused}></Memory>
-          <Memory x={-3} y={2} color={BLUE} paused={paused}></Memory>
-          <Memory x={-3} y={1} color={BLUE} paused={paused}></Memory>
-          <Memory x={-3} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={-3} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={-3} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-3} y={-3} color={RED} paused={paused}></Memory>
-            
-          <Memory x={-2} y={3} color={BLUE} paused={paused}></Memory>
-          <Memory x={-2} y={2} color={BLUE} paused={paused}></Memory>
-          <Memory x={-2} y={1} color={BLUE} paused={paused}></Memory>
-          <Memory x={-2} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={-2} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={-2} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-2} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={-1} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={-1} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-1} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={-1} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={-1} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={-1} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={-1} y={-3} color={RED} paused={paused}></Memory>
-            
-          <Memory x={0} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={0} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={0} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={0} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={0} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={0} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={0} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={1} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={1} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={1} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={1} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={1} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={1} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={1} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={2} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={2} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={2} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={2} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={2} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={2} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={2} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={3} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={3} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={3} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={3} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={3} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={3} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={3} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={4} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={4} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={4} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={4} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={4} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={4} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={4} y={-3} color={RED} paused={paused}></Memory>
-          
-          <Memory x={5} y={3} color={RED} paused={paused}></Memory>
-          <Memory x={5} y={2} color={WHITE} paused={paused}></Memory>
-          <Memory x={5} y={1} color={RED} paused={paused}></Memory>
-          <Memory x={5} y={0} color={WHITE} paused={paused}></Memory>
-          <Memory x={5} y={-1} color={RED} paused={paused}></Memory>
-          <Memory x={5} y={-2} color={WHITE} paused={paused}></Memory>
-          <Memory x={5} y={-3} color={RED} paused={paused}></Memory>
-        </group>
+        {/* memoryfield */}
+        <MemoryFieldMemo paused={paused}></MemoryFieldMemo>
       </Canvas>
     </div>
   );
