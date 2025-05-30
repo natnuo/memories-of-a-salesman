@@ -1,5 +1,4 @@
 import { CameraControls, CameraControlsProps } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Euler, Vector3 } from "three";
 
@@ -9,8 +8,8 @@ export default function CameraControlsWrapper(props: CameraControlsWrapperProps)
   const cameraControls = useRef<CameraControls>(null);
 
   let
-    lastCameraPosition: Vector3 | undefined,
-    lastCameraRotation: Euler | undefined,
+    // lastCameraPosition: Vector3 | undefined,
+    // lastCameraRotation: Euler | undefined,
     lastCameraZoom: number | undefined;
   
   // useFrame(() => {
@@ -27,7 +26,7 @@ export default function CameraControlsWrapper(props: CameraControlsWrapperProps)
 
   const { onChange: onChangeProp, ...remainingProps } = props;
 
-  return <CameraControls 
+  return <CameraControls
     ref={cameraControls}
     onChange={() => {
       if (!cameraControls.current) return;
