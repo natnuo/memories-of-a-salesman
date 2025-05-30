@@ -13,7 +13,7 @@ const CONTINUE_PULSE_TIME = "4s";
 const App = () => {
   const [paused, setPaused] = useState(true);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(0);
 
   const [dispOverlay, _setDispOverlay] = useState<ReactNode>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -33,19 +33,44 @@ const App = () => {
     return () => clearTimeout(timeout);
   };
 
+  const modalRef = useRef<HTMLDivElement>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalImageSrc, setModalImageSrc] = useState("");
+  const [modalImageSrc, setModalImageSrc] = useState<string>();
   const [modalTitle, setModalTitle] = useState("");
   const [modalCaption, setModalCaption] = useState("");
+
+  useEffect(() => console.log(loading), [loading]);
 
   const [headerNode, _setHeaderNode] = useState<ReactNode>(null);
   const [currentMemory, setCurrentMemory] = useState(0);
   const onMemoryClick = useCallback(() => {
     switch (currentMemory) {
-      case 0:
-        onHeaderChange(<><b>I:</b> Willy's belief in the American Dream.</>)
-        setModalImageSrc(require("../utility/uncle_ben_arrives.png"));
-
+      case 0:  // all one-way
+        onHeaderChange(<><b>I:</b> Willy's tries to believe in the American Dream.</>);
+        setModalTitle(`"You see what [I've] been talking about? The greatest things can happen!" (48)`);
+        setModalImageSrc(require("../utility/1.png"));
+        setModalCaption("Willy is estatic for evidence confirming his beliefs, which Ben's success provides. A failure of the American Dream, Willy hopes that he can still fit societal expectations of success.");
+        setCntHighlighted(3);
+        setModalVisible(true);
+        break;
+      case 1:
+        setModalTitle(`"Business is bad, it's murderous. But not for me, of course" (51).`);
+        setModalImageSrc(require("../utility/2.png"));
+        setModalCaption("Willy seems to believe in his unique potential for success.  The expression of certainty, “of course,” highlights this self-perception of near-invincibility.");
+        setModalVisible(true);
+        break;
+      case 2:
+        setModalTitle(`"Business is bad, it's murderous. But not for me, of course" (51).`);
+        setModalImageSrc(require("../utility/2.png"));
+        setModalCaption(`Willy's certainty could also be exaggerated to appear stronger to Uncle Ben. Willy's pride obligates him to present as unique and successful.`);
+        setModalVisible(true);
+        break;
+      // case 3:
+      //   onHeaderChange(<><b>I:</b> Willy's tries to believe in the American Dream.</>);
+      //   setModalTitle(`"Business is bad, it's murderous. But not for me, of course" (51).`);
+      //   setModalImageSrc(require("../utility/2.png"));
+      //   setModalCaption(`Willy's certainty could also be exaggerated to appear stronger to Uncle Ben. Willy's pride obligates him to present as unique and successful.`);
+      //   break;
     }
 
     setCurrentMemory(currentMemory + 1);
@@ -224,8 +249,9 @@ const App = () => {
       {/* HEADER */}
       <span
         className={`
-          ${styles["absolute"]} ${styles["left-1/2"]} ${styles["top-4"]} ${styles["z-10"]}
-          ${styles["-translate-x-1/2"]} ${styles["text-base"]} ${styles["text-white"]}
+          ${styles["absolute"]} ${styles["left-1/2"]} ${styles["top-4"]} ${styles["z-40"]}
+          ${styles["-translate-x-1/2"]} ${styles["text-base"]}
+          ${modalVisible ? `${styles["text-gray-400"]}` : `${styles["text-white"]}`}
           ${styles["text-center"]}
         `}
         style={{ transitionDuration: OVERLAY_TRANSITION_MS / 2 + "ms" }}
@@ -239,24 +265,51 @@ const App = () => {
         className={`
           ${styles["absolute"]}
           ${styles["top-0"]} ${styles["bottom-0"]} ${styles["left-0"]} ${styles["right-0"]}
-          ${styles["-z-30"]} ${styles["p-8"]} ${styles["opacity-0"]}
-          ${modalVisible ? `${styles["!opacity-100"]} ${styles["!z-30"]}` : ""}
+          ${styles["-z-30"]}
+          ${modalVisible ? `${styles["opacity-100"]} ${styles["!z-30"]}` : `${styles["opacity-0"]}`}
+          ${styles["text-white"]}
         `}
-        style={{ transitionDuration: OVERLAY_TRANSITION_MS / 2 + "ms" }}
+        style={{ transitionDuration: OVERLAY_TRANSITION_MS / 2 + "ms", backdropFilter: "blur(4px)" }}
+        ref={modalRef}
       >
-        {/* modal close */}
         <div
           className={`
-            ${styles["absolute"]} ${styles["top-2"]} ${styles["right-2"]}
-            ${styles["cursor-pointer"]}
+            ${styles["absolute"]}
+            ${styles["w-[50svw]"]} ${styles["max-h-[75svh]"]} ${styles["p-16"]}
+            ${styles["left-1/2"]} ${styles["top-1/2"]} ${styles["text-center"]}
+            ${styles["-translate-x-1/2"]} ${styles["-translate-y-1/2"]}
+            ${styles["bg-black"]} ${styles["flex"]} ${styles["gap-4"]} ${styles["rounded"]}
+            ${styles["flex-col"]} ${styles["items-center"]} ${styles["justify-center"]}
           `}
-          onClick={() => setModalVisible(false)}
-        >X</div>
+        >
+          {/* modal close */}
+          <div
+            className={`
+              ${styles["absolute"]} ${styles["top-2"]} ${styles["right-4"]}
+              ${styles["block"]} ${styles["text-2xl"]}
+              ${styles["cursor-pointer"]} ${styles["font-bold"]}
+            `}
+            onClick={() => {
+              if (!modalRef.current) return;
 
-        {/* modal details */}
-        {modalTitle}
-        <img src={modalImageSrc}></img>
-        {modalCaption}
+              modalRef.current.style.opacity = "0";
+
+              setTimeout(() => {
+                if (!modalRef.current) return;
+
+                setModalVisible(false);
+                modalRef.current.style.removeProperty("opacity");
+              }, OVERLAY_TRANSITION_MS / 2);
+            }}
+          >X</div>
+
+          {/* modal details */}
+          <span className={`${styles["text-3xl"]}`}>{modalTitle}</span>
+          <div style={{ height: "50%" }}>
+            <img src={modalImageSrc} className={`${styles["rounded"]}`} style={{ height: "100%" }}></img>
+          </div>
+          <span>{modalCaption}</span>
+        </div>
       </div>
 
       {/* CANVAS */}

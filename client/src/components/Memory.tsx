@@ -10,8 +10,6 @@ const MAX_TGPZ = 20; // min will be additive opposite
 
 const MIN_TGPZ_CHANGE = 2;
 
-const HIGHLIGHT_BRIGHTNESS_FACTOR = 4;
-
 type MemoryProps = {
   x: number;
   y: number;
@@ -19,7 +17,8 @@ type MemoryProps = {
   paused: boolean;
   highlighted: boolean;
   onClick: () => void;
-  loading: boolean;
+  loading: number;
+  highlightBrightnessFactor: number;
 };
 
 // HAVE MEMORIES THAT CAN BE INTERACTED WITH, GLOW
@@ -53,7 +52,8 @@ export default function Memory({
   paused,
   highlighted,
   onClick,
-  loading
+  loading,
+  highlightBrightnessFactor
 }: MemoryProps) {
   const meshRef = useRef<Mesh>(null);
 
@@ -117,15 +117,15 @@ export default function Memory({
     if (highlighted && !unhighlighted) {
       setR(Math.min(
         r + dt,
-        (color[0] * HIGHLIGHT_BRIGHTNESS_FACTOR) / 255
+        (color[0] * highlightBrightnessFactor) / 255
       ));
       setG(Math.min(
         g + dt,
-        (color[1] * HIGHLIGHT_BRIGHTNESS_FACTOR) / 255
+        (color[1] * highlightBrightnessFactor) / 255
       ));
       setB(Math.min(
         b + dt,
-        (color[2] * HIGHLIGHT_BRIGHTNESS_FACTOR) / 255
+        (color[2] * highlightBrightnessFactor) / 255
       ));
     } else {
       setR(Math.max(
@@ -148,7 +148,7 @@ export default function Memory({
       <mesh
         ref={meshRef}
         onClick={() => {
-          if (highlighted && !unhighlighted && !loading) {
+          if (highlighted && !unhighlighted && loading === 0) {
             setUnhighlighted(true);
             onClick();
           }

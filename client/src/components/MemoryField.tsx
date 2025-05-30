@@ -5,6 +5,11 @@ const RED = [179, 25, 66] as [number, number, number],
   BLUE = [10, 49, 97] as [number, number, number],
   WHITE = [177, 177, 177] as [number, number, number];
 
+const
+  RED_HIGHLIGHT_BRIGHTNESS_FACTOR = 8,
+  BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR = 12,
+  WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR = 3;
+
 const MIN_X = -5,
   MAX_X = 5,
   MIN_Y = -3,
@@ -14,7 +19,7 @@ type MemoryFieldProps = {
   paused: boolean;
   highlights: number;
   onMemoryClick: () => void;
-  loading: boolean;
+  loading: number;
 };
 
 export default function MemoryField({ paused, highlights, onMemoryClick, loading }: MemoryFieldProps) {
@@ -53,7 +58,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={3}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -61,7 +66,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={2}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -69,7 +74,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={1}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -77,7 +82,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -85,7 +90,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -93,7 +98,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -101,7 +106,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-5}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-5 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -110,7 +115,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={3}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -118,7 +123,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={2}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -126,7 +131,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={1}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -134,7 +139,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -142,7 +147,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -150,7 +155,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -158,7 +163,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-4}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-4 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -167,7 +172,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={3}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -175,7 +180,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={2}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -183,7 +188,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={1}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -191,7 +196,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -199,7 +204,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -207,7 +212,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -215,7 +220,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-3}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-3 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -224,7 +229,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={3}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -232,7 +237,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={2}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -240,7 +245,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={1}
-        color={BLUE}
+        color={BLUE} highlightBrightnessFactor={BLUE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -248,7 +253,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -256,7 +261,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -264,7 +269,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -272,7 +277,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-2}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-2 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -281,7 +286,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -289,7 +294,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -297,7 +302,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -305,7 +310,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -313,7 +318,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -321,7 +326,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -329,7 +334,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={-1}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-1 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -338,7 +343,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -346,7 +351,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -354,7 +359,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -362,7 +367,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -370,7 +375,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -378,7 +383,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -386,7 +391,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={0}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[-MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -395,7 +400,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -403,7 +408,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -411,7 +416,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -419,7 +424,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -427,7 +432,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -435,7 +440,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -443,7 +448,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={1}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[1 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -452,7 +457,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -460,7 +465,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -468,7 +473,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -476,7 +481,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -484,7 +489,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -492,7 +497,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -500,7 +505,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={2}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[2 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -509,7 +514,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -517,7 +522,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -525,7 +530,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -533,7 +538,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -541,7 +546,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -549,7 +554,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -557,7 +562,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={3}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[3 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -566,7 +571,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -574,7 +579,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -582,7 +587,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -590,7 +595,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -598,7 +603,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -606,7 +611,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -614,7 +619,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={4}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[4 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -623,7 +628,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][-3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -631,7 +636,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][-2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -639,7 +644,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][-1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -647,7 +652,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={0}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][-MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -655,7 +660,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={-1}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][1 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -663,7 +668,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={-2}
-        color={WHITE}
+        color={WHITE} highlightBrightnessFactor={WHITE_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][2 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
@@ -671,7 +676,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
       <Memory
         x={5}
         y={-3}
-        color={RED}
+        color={RED} highlightBrightnessFactor={RED_HIGHLIGHT_BRIGHTNESS_FACTOR}
         paused={paused}
         highlighted={currentlyHighlighted[5 - MIN_X][3 - MIN_Y]}
         onClick={onMemoryClick} loading={loading}
