@@ -74,7 +74,7 @@ const App = () => {
         onHeaderChange(<><b>II:</b> Willy's dream dehumanizes him.</>);
         setModalTitle(`Willy: “Howard, I never asked a favor of any man, but I was with the firm when your father used to carry you in ... his arms.” (80).`);
         setModalImageSrc(require("../utility/4.png"));
-        setModalCaption(`Having served the company for his whole life, Willy expects to be a trusted and respected salesman. Willy asks Howard for a reduced workload to accommodate worsening health. To Willy, his company owes him for years of loyal service. He expects the businessman to appreciate that he supported Howard’s father and was trusted to see Howard in his most vulnerable, newborn state. However, the company’s perspective is calculated: if Willy cannot provide for the business, then he cannot work for the business.`);
+        setModalCaption(`Having served the company for his nearly his whole adult life, Willy expects to be a trusted and respected salesman. Willy asks Howard for a reduced workload to accommodate worsening health. To Willy, his company owes him for years of loyal service. He expects the businessman to appreciate that he supported Howard’s father and was trusted to see Howard in his most vulnerable, newborn state. However, the company’s perspective is calculated: if Willy cannot provide for the business, then he cannot work for the business.`);
         setModalVisible(true);
         break;
       case 4:
@@ -98,7 +98,7 @@ const App = () => {
       case 7:
         setModalTitle(`Willy: “You can’t eat the orange and throw the peel away—a man is not a piece of fruit!” (82).`);
         setModalImageSrc(require("../utility/8.png"));
-        setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from Willy and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
+        setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from him and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
         setModalVisible(true); 
         onHeaderChange(<>✅ <b>II:</b> Willy's dream dehumanizes him. ✅</>);
         setCntHighlighted(c => c + 6);
