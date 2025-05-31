@@ -1,9 +1,10 @@
 import styles from "../css/index.module.css";
 import { Canvas } from "@react-three/fiber";
-import { memo, ReactNode, Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { memo, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import CameraControlsWrapper from "./CameraControlsWrapper";
 import MemoryField from "./MemoryField";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { GiSoundOn, GiSoundOff } from "react-icons/gi";
 
 const MemoryFieldMemo = memo(MemoryField);
 
@@ -13,7 +14,7 @@ const CONTINUE_PULSE_TIME = "4s";
 const App = () => {
   const [paused, setPaused] = useState(false);
 
-  const [loading, setLoading] = useState(0);
+  const [loading, ] = useState(0);
 
   const [dispOverlay, _setDispOverlay] = useState<ReactNode>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -36,10 +37,12 @@ const App = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalImageSrc, setModalImageSrc] = useState<string>();
+  const [modalIFrameSrc, setModalIFrameSrc] = useState<string>();
   const [modalTitle, setModalTitle] = useState("");
   const [modalCaption, setModalCaption] = useState("");
 
-  useEffect(() => console.log(loading), [loading]);
+  const endScreenRef = useRef<HTMLDivElement>(null);
+  const [ended, setEnded] = useState(false);
 
   const [headerNode, _setHeaderNode] = useState<ReactNode>(null);
   const [currentMemory, setCurrentMemory] = useState(0);
@@ -56,7 +59,7 @@ const App = () => {
       case 1:
         setModalTitle(`Willy: “Business is bad, it’s murderous. But not for me, of course” (51).`);
         setModalImageSrc(require("../utility/2.png"));
-        setModalCaption("Willy seems to believe in his unique potential for success.  The expression of certainty, “of course,” highlights this self-perception of near-invincibility. Willy’s certainty could also be exaggerated to appear stronger to Uncle Ben. The “but not for me,” an afterthought and reaction to his need to present as unique and successful.");
+        setModalCaption("Willy seems to believe in his unique potential for success. The expression of certainty, “of course,” highlights this self-perception of strength. Willy’s certainty could also be exaggerated to appear stronger to Uncle Ben. The “but not for me,” an afterthought and reaction to his need to present as unique and successful.");
         setModalVisible(true);
         break;
       case 2:
@@ -65,6 +68,7 @@ const App = () => {
         setModalCaption(`Willy displays a near cult-like obsession with his dream. His urge to be “right” emphasizes his resistance to new ideas. However, although he may appear to trust his beliefs, his excitement about being “right” may also suggest potential insecurity. If he was confident in his beliefs, he would not be as surprised to be supposedly correct. As much as he may want to trust his beliefs, he may internally recognize potential flaws.`);
         setModalVisible(true);
         onHeaderChange(<>✅ <b>I:</b> Willy tries to believe in the American Dream. ✅</>);
+        setCntHighlighted(c => c + 6);
         break;
       case 3:
         onHeaderChange(<><b>II:</b> The American Dream devalues Willy.</>);
@@ -104,6 +108,7 @@ const App = () => {
         setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from Willy and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
         setModalVisible(true); 
         onHeaderChange(<>✅ <b>II:</b> Willy's dream fails him. ✅</>);
+        setCntHighlighted(c => c + 6);
         break;
       case 9:
         onHeaderChange(<><b>III:</b> Willy's refuses change to his American Dream.</>);
@@ -112,10 +117,77 @@ const App = () => {
         setModalCaption(`Linda questions if Bill Oliver would remember Biff. Willy continuously exaggerates reality throughout the play, here suggesting that Biff was Oliver’s top worker. These delusions spread to the rest of the family, with Linda believing that “Oliver always thought the highest” (65) of Biff. However, Biff was far from well-known.`);
         setModalVisible(true);
         break;
+      case 10:
+        setModalTitle(`Biff: “I was never a salesman for Bill Oliver,” Willy: “Well, you were” (106).`);
+        setModalImageSrc(require("../utility/10.png"));
+        setModalCaption(`Willy refuses to accept the reality of Biff’s failure. The family continuously lied to themselves, making themselves seem better than the reality, to the point where they forgot what the reality was.`);
+        setModalVisible(true);
+        break;
+      case 11:
+        setModalTitle(`The Restaurant Scene`);
+        setModalImageSrc(undefined);
+        setModalIFrameSrc("https://www.youtube.com/embed/F1pgjaNcKqM?start=5803&end=5825")
+        setModalCaption(`When Biff explains the truth of his meeting, Willy continuously interrupts. Willy’s questions are often prompting, leaving no expectation of failure. He wants to believe that Biff received a “warm welcome,” was “remembered,” and was valued by Bill Oliver. After being fired and seeing evidence against his lifelong beliefs, Willy needs affirmation for his American Dream, a need evidenced by his eagerness and constant interruptions. Biff, seeing this insecurity, is reluctant to tell the truth, with “look” and “see,” trying to prepare Willy for potentially unfavorable news, yet Willy does not allow Biff to tell the truth.`);
+        setModalVisible(true);
+        break;
+      case 12:
+        setModalTitle(`Biff: “Dad, you’re not letting me tell you what I want to tell you!” (108), Willy: “What’d you insult him or something? You insulted him, didn’t you?” (109).`);
+        setModalImageSrc(require("../utility/12.png"));
+        setModalIFrameSrc(undefined);  // unnecessary call, technically, but could be good habit
+        setModalCaption(`When Biff finally breaks and begins to reveal the truth, Willy’s tone become accusatory. Sensing that Oliver rejected Biff, Willy attempts to justify this failure: not by questioning the plausibility of his dreams, but by claiming intentional sabotage by Biff. Willy’s inability to reject his belief in the American Dream and consequent decision to blame others, even his family, for any failures highlights his obsession with this unrealistic goal.`);
+        setModalVisible(true);
+        break;
+      case 13:
+        setModalTitle(`Biff: “He had the wrong dreams ... he never knew who he was” (138).`);
+        setModalImageSrc(require("../utility/13.png"));
+        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality.  Willy enjoyed construction, building, engineering; he was not born to be a salesman. He sought an unhappy or implausible life-goal.`);
+        setModalVisible(true);
+        break;
+      case 14:
+        setModalTitle(`Happy: “I’m gonna beat [the] racket ... [and prove that Willy Loman] had a good dream ... the only dream you can have—to come out number-one man” (138-139).`);
+        setModalImageSrc(require("../utility/14.png"));
+        setModalCaption(`Even in death, Willy’s belief in his unique potential for success and refusal to change extends to Happy. As such, the play questions American society’s obsessions with materialism, highlighting Willy’s uncontrollable delusion and Happy’s ill-fated pursuit of the same flawed ideals.`);
+        setModalVisible(true);
+        onHeaderChange(<>✅ <b>III:</b> Willy's refuses change to his American Dream. ✅</>);
+        setCntHighlighted(c => c + 1);
+        break;
+      case 15:
+        onHeaderChange(<><b><i>Conclusion</i></b></>);
+        setModalTitle(`The End.`);
+        setModalImageSrc(require("../utility/15.png"));
+        setModalCaption(`Although Willy is a self-described salesman, perhaps he was also a product being sold or a customer being sold to: being owned by Howard’s company and being convinced of the implausible American Dream. Further, he sells the dream to his children, leading Happy down the same path. What if Willy Loman listened to Biff and sought his own meaning in life? What if Willy did what he loved most: building with his hands? Learning from Willy, maybe humanity should not seek to replicate the success of others, but to explore our passions and carve success that is truly ours.`);
+        setModalVisible(true);
+        setCntHighlighted(c => c + 1);
+        break;
+      case 16:
+        setEnded(true);
+        setTimeout(() => {
+          if (!endScreenRef.current) return;
+          endScreenRef.current.style.opacity = "1";
+        }, OVERLAY_TRANSITION_MS / 2);
+        break;
+      default:
+        alert("Sorry! Something unexpected happened, and efforts to recover your save failed. Please reload to replay.")
+        break;
     }
 
     setCurrentMemory(currentMemory + 1);
   }, [currentMemory]);
+
+  const musicRef = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    if (musicRef.current) {
+      musicRef.current.preservesPitch = false;
+      musicRef.current.playbackRate = 1 - currentMemory * 0.03;
+    }
+  }, [currentMemory]);
+
+  const [musicVolume, setMusicVolume] = useState(1);  // proxy-ish music volume variable to neaten code
+  useEffect(() => {
+    if (musicRef.current) {
+      musicRef.current.volume = musicVolume;
+    }
+  }, [musicVolume]);
 
   const headerRef = useRef<HTMLSpanElement>(null);
   const onHeaderChange = (newHeader: ReactNode) => {
@@ -302,6 +374,27 @@ const App = () => {
 
   return (
     <div className={`${styles["w-svw"]} ${styles["h-svh"]}`}>
+      {/* MUSIC */}
+      <audio
+        ref={musicRef}
+        src={require("../utility/music_calm.wav")}
+        autoPlay
+        loop
+      ></audio>
+      {
+        musicVolume === 0
+        ? GiSoundOff({size: 40, color: "white"})
+        : GiSoundOn({size: 40, color: "white"})
+      }
+      <input
+        type="range"
+        min={0}
+        max={1000}
+        value={musicVolume * 1000}
+        onChange={(e) => { setMusicVolume(e.target.valueAsNumber / 1000); }}
+        className={`${styles["range"]} ${styles["text-black"]}`}
+      />
+
       {/* OVERLAY */}
       <div
         className={`
@@ -329,6 +422,24 @@ const App = () => {
       >
         {headerNode}
       </span>
+
+      {/* END SCREEN */}
+      {
+        ended &&
+        (<div
+          className={`
+            ${styles["absolute"]}
+            ${styles["top-0"]} ${styles["bottom-0"]} ${styles["left-0"]} ${styles["right-0"]}
+            ${styles["z-40"]} ${styles["flex"]} ${styles["justify-center"]} ${styles["items-center"]}
+            ${styles["text-white"]} ${styles["flex-col"]} ${styles["opacity-0"]}
+          `}
+          style={{ transitionDuration: OVERLAY_TRANSITION_MS / 2 + "ms", backdropFilter: "blur(4px)" }}
+          ref={endScreenRef}
+        >
+          <h1>The End.</h1>
+          <span>Thanks for reading. <a href=".">Click here to play again</a></span>
+        </div>)
+      }
 
       {/* MODAL */}
       <div
@@ -381,8 +492,21 @@ const App = () => {
 
           {/* modal details */}
           <span className={`${styles["text-3xl"]}`}>{modalTitle}</span>
-          <div style={{ width: "70%" }}>
-            <img src={modalImageSrc} alt="" className={`${styles["rounded"]}`} style={{ height: "100%" }}></img>
+          <div
+            className={`${styles["items-center"]} ${styles["justify-center"]} ${styles["flex"]}`}
+            style={{ width: "70%" }}
+          >
+            {
+              modalImageSrc !== undefined
+              ? <img src={modalImageSrc} alt="" className={`${styles["rounded"]}`} style={{ height: "100%" }}></img>
+              : (<iframe
+                src={modalIFrameSrc}
+                title="YouTube video player"
+                style={{ height: "100%" }}
+                className={`${styles["rounded"]}`}
+                allowFullScreen
+              ></iframe>)
+            }
           </div>
           <span>{modalCaption}</span>
         </div>

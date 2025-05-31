@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Memory from "./Memory";
 
 const RED = [179, 25, 66] as [number, number, number],
