@@ -226,7 +226,7 @@ const App = () => {
         setOverlay(
           <>
             <span className={`${styles["text-3xl"]}`}>
-              Welcome to <i>Dreams of a Salesman.</i>
+              Welcome to <i>Memories of a Salesman.</i>
             </span>
             <div
               className={`
