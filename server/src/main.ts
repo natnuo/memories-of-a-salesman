@@ -5,9 +5,6 @@ import path from "node:path";
 import * as fs from "fs";
 import http from "node:http";
 import https from "node:https";
-import { Server } from "socket.io";
-import assert from "node:assert";
-import { isUser, User } from "../../lib/user-types";
 
 const __PRODUCTION__ = process.env.PRODUCTION === "Y";
 
@@ -21,33 +18,15 @@ const server = __PRODUCTION__
   ? https.createServer({ key: SSL_KEY, cert: SSL_CERT }, app)
   : http.createServer(app);
 
-const io = new Server(server);
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "../../client/build")));
 app.use("/public", express.static("public"));
 
 app.get("/", (req, res) => {
+  console.log("Home page loaded from ", req.ip);
   res.sendFile(path.resolve(__dirname, `../../client/build`, "index.html"));
 });
-
-/////////////////////////////
-// OPERATIONAL INFORMATION //
-/////////////////////////////
-let ONLINE_USERS: Set<User> = new Set();
-
-io.on("connection", (socket) => {
-  assert(typeof socket.handshake.query.user === "string");
-
-  const user = JSON.parse(socket.handshake.query.user);
-  assert(isUser(user));
-
-  ONLINE_USERS.add(user);
-
-  socket.on("disconnect", () => { ONLINE_USERS.delete(user); })
-});
-
 
 server.listen(PORT, () => {
   if (__PRODUCTION__) console.log("App listening on port", PORT);
