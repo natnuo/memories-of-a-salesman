@@ -509,13 +509,15 @@ const App = () => {
             {
               modalImageSrc !== undefined
               ? <img src={modalImageSrc} alt="" className={`${styles["rounded"]}`} style={{ height: "100%" }}></img>
-              : (<iframe
+              : (<><iframe
                 src={modalIFrameSrc}
                 title="YouTube video player"
                 style={{ height: "100%" }}
                 className={`${styles["rounded"]}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-              ></iframe>)
+              ></iframe></>)
             }
           </div>
           <span>{modalCaption}</span>
