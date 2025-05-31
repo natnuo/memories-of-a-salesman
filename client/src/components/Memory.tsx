@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
-import { ComponentProps, memo, useEffect, useRef, useState } from "react";
-import { Color, Mesh, MeshStandardMaterial, Object3D } from "three";
+import { useRef, useState } from "react";
+import { Mesh, MeshStandardMaterial } from "three";
 
 // will be further modified by dt
 const MAX_ACCEL = 0.01;
@@ -45,6 +45,8 @@ const pController = (
   return { p: p_, v: v_, et };
 };
 
+const randZ = () => Math.random() * 2 * MAX_TGPZ - MAX_TGPZ;
+
 export default function Memory({
   x,
   y,
@@ -62,13 +64,15 @@ export default function Memory({
   const [g, setG] = useState(color[1] / 255);
   const [b, setB] = useState(color[2] / 255);
 
+  const [s, setS] = useState(1);
+
   const [vz, setVz] = useState(0);
   const [vx, setVx] = useState(0);
   const [vy, setVy] = useState(0);
   const [tgpz, setTGPz] = useState(0);
-  const [tgpx, setTGPx] = useState(2 * x);
-  const [tgpy, setTGPy] = useState(2 * y);
-  const [pz, setPz] = useState(0);
+  const [tgpx, ] = useState(1.01 * x);
+  const [tgpy, ] = useState(1.01 * y);
+  const [pz, setPz] = useState(randZ());
   const [px, setPx] = useState(x);
   const [py, setPy] = useState(y);
 
@@ -99,10 +103,7 @@ export default function Memory({
 
     if (Math.abs(etz) < 0.5) {
       let n_tgpz;
-      do {
-        n_tgpz = Math.random() * 2 * MAX_TGPZ - MAX_TGPZ;
-      } while (Math.abs(n_tgpz - tgpz) < MIN_TGPZ_CHANGE);
-
+      do n_tgpz = randZ(); while (Math.abs(n_tgpz - tgpz) < MIN_TGPZ_CHANGE);
       setTGPz(n_tgpz);
     }
   });
@@ -141,25 +142,36 @@ export default function Memory({
         color[2] / 255
       ));
     }
+
+    if (unhighlighted) {
+      setS(Math.max(
+        s - dt / 2,
+        0
+      ));
+      meshRef.current?.remove();
+    }
   });
 
   return (
     <>
-      <mesh
-        ref={meshRef}
-        onClick={() => {
-          if (highlighted && !unhighlighted && loading === 0) {
-            setUnhighlighted(true);
-            onClick();
-          }
-        }}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial
-          ref={materialRef}
-          color={[r, g, b]}
-        />
-      </mesh>
+      {
+        // !unhighlighted &&
+        (<mesh
+          ref={meshRef}
+          onClick={() => {
+            if (highlighted && !unhighlighted && loading === 0) {
+              setUnhighlighted(true);
+              onClick();
+            }
+          }}
+        >
+          <boxGeometry args={[s, s, s]} />
+          <meshStandardMaterial
+            ref={materialRef}
+            color={[r, g, b]}
+          />
+        </mesh>)
+      }
     </>
   );
 }

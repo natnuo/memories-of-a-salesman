@@ -1,6 +1,5 @@
 import { CameraControls, CameraControlsProps } from "@react-three/drei";
 import { useRef } from "react";
-import { Euler, Vector3 } from "three";
 
 type CameraControlsWrapperProps = CameraControlsProps & { onLeftDrag?: () => void, onRightDrag?: () => void, onZoom?: () => void };
 

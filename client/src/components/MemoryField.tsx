@@ -54,7 +54,7 @@ export default function MemoryField({ paused, highlights, onMemoryClick, loading
   }, [highlights, currentlyHighlighted]);
 
   return (
-    <group position={[0, 0, -10]}>
+    <group position={[0, 0, 0]} rotation={[0, 3 * Math.PI / 2, 0]}>
       <Memory
         x={-5}
         y={3}
