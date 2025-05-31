@@ -71,7 +71,7 @@ const App = () => {
         setCntHighlighted(c => c + 5);
         break;
       case 3:
-        onHeaderChange(<><b>II:</b> The American Dream devalues Willy.</>);
+        onHeaderChange(<><b>II:</b> Willy's dream dehumanizes him.</>);
         setModalTitle(`Willy: “Howard, I never asked a favor of any man, but I was with the firm when your father used to carry you in ... his arms.” (80).`);
         setModalImageSrc(require("../utility/4.png"));
         setModalCaption(`Having served the company for his whole life, Willy expects to be a trusted and respected salesman. Willy asks Howard for a reduced workload to accommodate worsening health. To Willy, his company owes him for years of loyal service. He expects the businessman to appreciate that he supported Howard’s father and was trusted to see Howard in his most vulnerable, newborn state. However, the company’s perspective is calculated: if Willy cannot provide for the business, then he cannot work for the business.`);
@@ -100,11 +100,11 @@ const App = () => {
         setModalImageSrc(require("../utility/8.png"));
         setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from Willy and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
         setModalVisible(true); 
-        onHeaderChange(<>✅ <b>II:</b> Willy's dream fails him. ✅</>);
+        onHeaderChange(<>✅ <b>II:</b> Willy's dream dehumanizes him. ✅</>);
         setCntHighlighted(c => c + 6);
         break;
       case 8:
-        onHeaderChange(<><b>III:</b> Willy's refuses change to his American Dream.</>);
+        onHeaderChange(<><b>III:</b> Willy refuses to change his American Dream.</>);
         setModalTitle(`Willy: “What’s the matter with you, you crazy? If he’d’ve stayed with Oliver he’d be on top by now” (67).`);
         setModalImageSrc(require("../utility/9.png"));
         setModalCaption(`Linda questions if Bill Oliver would remember Biff. Willy continuously exaggerates reality throughout the play, here suggesting that Biff was Oliver’s top worker. These delusions spread to the rest of the family, with Linda believing that “Oliver always thought the highest” (65) of Biff. However, Biff was far from well-known.`);
@@ -141,7 +141,7 @@ const App = () => {
         setModalImageSrc(require("../utility/14.png"));
         setModalCaption(`Even in death, Willy’s belief in his unique potential for success and refusal to change extends to Happy. As such, the play questions American society’s obsessions with materialism, highlighting Willy’s uncontrollable delusion and Happy’s ill-fated pursuit of the same flawed ideals.`);
         setModalVisible(true);
-        onHeaderChange(<>✅ <b>III:</b> Willy's refuses change to his American Dream. ✅</>);
+        onHeaderChange(<>✅ <b>III:</b> Willy refuses to change his American Dream. ✅</>);
         setCntHighlighted(c => c + 1);
         break;
       case 14:
@@ -503,21 +503,33 @@ const App = () => {
           {/* modal details */}
           <span className={`${styles["text-3xl"]}`}>{modalTitle}</span>
           <div
-            className={`${styles["items-center"]} ${styles["justify-center"]} ${styles["flex"]}`}
+            className={`
+              ${styles["items-center"]} ${styles["justify-center"]} ${styles["flex"]} ${styles["flex-col"]}
+            `}
             style={{ width: "70%" }}
           >
             {
               modalImageSrc !== undefined
               ? <img src={modalImageSrc} alt="" className={`${styles["rounded"]}`} style={{ height: "100%" }}></img>
-              : (<><iframe
-                src={modalIFrameSrc}
-                title="YouTube video player"
-                style={{ height: "100%" }}
-                className={`${styles["rounded"]}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe></>)
+              : (<>
+                <iframe
+                  src={modalIFrameSrc}
+                  title="YouTube video player"
+                  style={{ height: "100%" }}
+                  className={`${styles["rounded"]}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+                <div className={`${styles["flex"]}`}>
+                  If your browser refuses to play the video, click&nbsp;<a
+                    href={modalIFrameSrc}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`${styles["underline"]} ${styles["underline-offset-4"]}`}
+                  >here</a>.
+                </div>
+              </>)
             }
           </div>
           <span>{modalCaption}</span>
