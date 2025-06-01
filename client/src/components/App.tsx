@@ -521,7 +521,7 @@ const App = () => {
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 ></iframe>
-                <div className={`${styles["flex"]}`}>
+                <div>
                   If your browser refuses to play the video, click&nbsp;<a
                     href={modalIFrameSrc}
                     target="_blank"
