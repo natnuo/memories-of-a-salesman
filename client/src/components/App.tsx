@@ -101,7 +101,7 @@ const App = () => {
         setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from him and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
         setModalVisible(true); 
         onHeaderChange(<>✅ <b>II:</b> Willy's dream dehumanizes him. ✅</>);
-        setCntHighlighted(c => c + 6);
+        setCntHighlighted(c => c + 8);
         break;
       case 8:
         onHeaderChange(<><b>III:</b> Willy refuses to change his American Dream.</>);
@@ -131,28 +131,40 @@ const App = () => {
         setModalVisible(true);
         break;
       case 12:
-        setModalTitle(`Biff: “He had the wrong dreams ... he never knew who he was” (138).`);
+        setModalTitle(`Willy: “A man can’t go out the way he came in, Ben, a man has got to add up to something ... Remember, it’s a guaranteed twenty-thousand-dollar proposition” (125-126).`);
         setModalImageSrc(require("../utility/13.png"));
-        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality.  Willy enjoyed construction, building, engineering; he was not born to be a salesman. He sought an unhappy or implausible life-goal.`);
+        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality and convinced that his children must “win” this American competition. The “something,” his life goal, is likely monetary gain or fame: in this case, possibly the “twenty-thousand-dollar” insurance plan. “Proposition” often refers to a business deal, highlighting Willy’s idea to sell his life to, from his perspective, help his children achieve the American Dream.`);
         setModalVisible(true);
         break;
       case 13:
-        setModalTitle(`Happy: “I’m gonna beat [the] racket ... [and prove that Willy Loman] had a good dream ... the only dream you can have—to come out number-one man” (138-139).`);
+        setModalTitle(`Willy: “It’s very smart ... I gotta go, baby. ’By! ’By! Going over to Ben, almost dancing: Imagine? When the mail comes [Biff will] be ahead of Bernard again!” (135).`);
         setModalImageSrc(require("../utility/14.png"));
+        setModalCaption(`After his final conversation with Biff, Willy expresses excitement about the impact of his death. His “dancing,” willingness, and near-enthusiasm to die to “be ahead” in the American Dream makes clear both his obsession with competition and excessive American capitalism’s potential flaws.`);
+        setModalVisible(true);
+        break;
+      case 14:
+        setModalTitle(`Biff: “He had the wrong dreams ... he never knew who he was” (138).`);
+        setModalImageSrc(require("../utility/15.png"));
+        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality.  Willy enjoyed construction, building, engineering; he was not born to be a salesman. He sought an unhappy or implausible life-goal.`);
+        setModalVisible(true);
+        break;
+      case 15:
+        setModalTitle(`Happy: “I’m gonna beat [the] racket ... [and prove that Willy Loman] had a good dream ... the only dream you can have—to come out number-one man” (138-139).`);
+        setModalImageSrc(require("../utility/16.png"));
         setModalCaption(`Even in death, Willy’s belief in his unique potential for success and refusal to change extends to Happy. As such, the play questions American society’s obsessions with materialism, highlighting Willy’s uncontrollable delusion and Happy’s ill-fated pursuit of the same flawed ideals.`);
         setModalVisible(true);
         onHeaderChange(<>✅ <b>III:</b> Willy refuses to change his American Dream. ✅</>);
         setCntHighlighted(c => c + 1);
         break;
-      case 14:
+      case 16:
         onHeaderChange(<><b><i>Conclusion</i></b></>);
         setModalTitle(`Conclusion`);
-        setModalImageSrc(require("../utility/15.png"));
+        setModalImageSrc(require("../utility/17.png"));
         setModalCaption(`Although Willy is a self-described salesman, perhaps he was also a product being sold or a customer being sold to: being owned by Howard’s company and being convinced of the implausible American Dream. Further, he sells the dream to his children, leading Happy down the same path. What if Willy Loman listened to Biff and sought his own meaning in life? What if Willy did what he loved most: building with his hands? Learning from Willy, maybe humanity should not seek to replicate the success of others, but to explore our passions and carve success that is truly ours.`);
         setModalVisible(true);
         setCntHighlighted(c => c + 1);
         break;
-      case 15:
+      case 17:
         setEnded(true);
         setTimeout(() => {
           if (!endScreenRef.current) return;
