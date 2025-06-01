@@ -469,8 +469,7 @@ const App = () => {
             ${styles["w-[50svw]"]} ${styles["max-h-[75svh]"]} ${styles["p-16"]}
             ${styles["left-1/2"]} ${styles["top-1/2"]} ${styles["text-center"]}
             ${styles["-translate-x-1/2"]} ${styles["-translate-y-1/2"]} ${styles["overflow-y-scroll"]}
-            ${styles["bg-black"]} ${styles["flex"]} ${styles["gap-4"]} ${styles["rounded"]}
-            ${styles["flex-col"]} ${styles["items-center"]} ${styles["justify-center"]}
+            ${styles["bg-black"]} ${styles["rounded"]}
           `}
         >
           {/* modal close */}
@@ -505,6 +504,7 @@ const App = () => {
           <div
             className={`
               ${styles["items-center"]} ${styles["justify-center"]} ${styles["flex"]} ${styles["flex-col"]}
+              ${styles["mt-4"]} ${styles["mx-auto"]}
             `}
             style={{ width: "70%" }}
           >
@@ -532,7 +532,7 @@ const App = () => {
               </>)
             }
           </div>
-          <span>{modalCaption}</span>
+          <span className={`${styles["mt-4"]} ${styles["block"]}`}>{modalCaption}</span>
         </div>
       </div>
 
