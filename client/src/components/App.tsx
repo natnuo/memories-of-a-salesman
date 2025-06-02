@@ -98,7 +98,7 @@ const App = () => {
       case 7:
         setModalTitle(`Willy: “You can’t eat the orange and throw the peel away—a man is not a piece of fruit!” (82).`);
         setModalImageSrc(require("../utility/8.png"));
-        setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from him and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
+        setModalCaption(`Willy begins to recognize: he expired to Howard. Howard took the orange, the product value, from him, and shows no appreciation for the peel, the human, that grew the orange. Willy is a worn product: sold to the Wagner company, retired by Howard.`);
         setModalVisible(true); 
         onHeaderChange(<>✅ <b>II:</b> Willy's dream dehumanizes him. ✅</>);
         setCntHighlighted(c => c + 8);
@@ -145,7 +145,7 @@ const App = () => {
       case 14:
         setModalTitle(`Biff: “He had the wrong dreams ... he never knew who he was” (138).`);
         setModalImageSrc(require("../utility/15.png"));
-        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality.  Willy enjoyed construction, building, engineering; he was not born to be a salesman. He sought an unhappy or implausible life-goal.`);
+        setModalCaption(`By the end of the play, Willy emotionally shatters and dies, unable to accept reality.  Willy enjoyed construction, building, engineering; he was not born to be a salesman. He sought an unhappy or implausible life goal.`);
         setModalVisible(true);
         break;
       case 15:
